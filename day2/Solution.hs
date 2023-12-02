@@ -31,11 +31,10 @@ possibleGame :: Text -> Bool
 possibleGame = all valid . parseDraws
   where
     valid :: Draw -> Bool
-    valid (num, color) =
-      num <= case color of
-        "red"   -> 12
-        "green" -> 13
-        "blue"  -> 14
+    valid (num, color) = num <= case color of
+      "red"   -> 12
+      "green" -> 13
+      "blue"  -> 14
 
 minimumSet :: Text -> Int
 minimumSet = product . map (maximum . map fst) . groupBy ((==) `on` snd) . sortOn snd . parseDraws
